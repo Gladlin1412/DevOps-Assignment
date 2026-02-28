@@ -92,7 +92,7 @@ pipeline {
         }
         failure {
             echo '=== Deployment FAILED. Showing container logs for debugging ==='
-            sh 'docker compose logs --tail=50 || true'
+            sh 'docker compose logs 2>&1 | tail -50 || true'
         }
         always {
             echo "Build #${BUILD_NUMBER} finished with status: ${currentBuild.currentResult}"
