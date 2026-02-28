@@ -18,19 +18,21 @@ pipeline {
         }
 
         stage('Test Backend') {
-            steps {
-                echo '=== Running Backend Tests ==='
-                dir('backend') {
-                    sh '''
-                        python3 -m venv .venv
-                        . .venv/bin/activate
-                        pip install --quiet -r requirements.txt
-                        pip install --quiet pytest httpx
-                        pytest app/test_main.py -v --tb=short
-                    '''
-                }
-            }
+    steps {
+        echo '=== Running Backend Tests ==='
+        dir('backend') {
+            sh """
+                set -e
+                python3 -m venv .venv
+                . .venv/bin/activate
+                pip install -r requirements.txt
+                pip install pytest httpx
+                export PYTHONPATH=\$(pwd)
+                pytest app/test_main.py -v --tb=short
+            """
         }
+    }
+}
 
         stage('Build Docker Images') {
             steps {
