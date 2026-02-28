@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'ubuntu' }
+    agent any
 
     environment {
         GIT_URL    = 'https://github.com/Gladlin1412/DevOps-Assignment.git'
@@ -16,13 +16,13 @@ pipeline {
 
         stage('Docker Compose Down') {
             steps {
-                sh 'docker compose down || true'
+                sh 'docker-compose down || true'
             }
         }
 
         stage('Docker Compose Build & Up') {
             steps {
-                sh 'docker compose up -d --build'
+                sh 'docker-compose up -d --build'
             }
         }
     }
