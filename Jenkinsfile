@@ -28,7 +28,7 @@ pipeline {
                 pip install -r requirements.txt
                 pip install pytest httpx
                 export PYTHONPATH=\$(pwd)
-                pytest app/test_main.py -v --tb=short
+                pytest -v --tb=short
             """
         }
     }
