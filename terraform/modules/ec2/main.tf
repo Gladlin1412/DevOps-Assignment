@@ -4,7 +4,6 @@ resource "aws_instance" "main" {
   subnet_id              = var.subnet_id
   vpc_security_group_ids = [var.sg_id]
   iam_instance_profile   = var.instance_profile
-  key_name               = "devops-assignment-key"  
 
   tags = {
     Name = "Terraform-EC2"
